@@ -4,7 +4,7 @@ from zipfile import ZipFile
 
 df = pd.DataFrame()
 
-for tranch in range(1, 4):
+for tranch in range(3, 4):
     
     tranch_images = 'http://sampy.ml:499/persons-posture-tranch' + str(tranch) + '.zip'
     tranch_labels = 'http://sampy.ml:499/tranch' + str(tranch) + '_labels.csv'
@@ -13,6 +13,10 @@ for tranch in range(1, 4):
     labels_path = wget.download(tranch_labels)
     
     labels = pd.read_csv(labels_path)
+    
+    if tranch != 1:
+        labels = labels.rename(columns={'final_url' : 'file_name'})
+    
     zip_file = ZipFile(pictures_path)
 
     file_list = [obj.filename for obj in zip_file.infolist()]
@@ -22,7 +26,8 @@ for tranch in range(1, 4):
     names.head();
 
     tranch_df = pd.merge(names, labels, on = 'file_name')
-    print(len(names), len(labels), len(tranch))
+
+    print(len(names), len(labels), len(tranch_df))
     df = df.append(tranch_df)
     zip_file.extractall()
 
