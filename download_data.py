@@ -4,7 +4,7 @@ from zipfile import ZipFile
 
 df = pd.DataFrame()
 
-for tranch in range(3, 4):
+for tranch in range(1, 4):
     
     tranch_images = 'http://sampy.ml:499/persons-posture-tranch' + str(tranch) + '.zip'
     tranch_labels = 'http://sampy.ml:499/tranch' + str(tranch) + '_labels.csv'
