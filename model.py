@@ -44,6 +44,8 @@ print("The following GPU devices are available: %s" % tf.test.gpu_device_name())
 df = pd.read_csv('tranch_master.csv')
 df = df.dropna(subset=['primary_posture'])
 df = df.reset_index(drop=True)
+print(df['primary_posture'].unique())
+df = df[df['primary_posture'] != 'Unknown']
 categories = {'Sitting': 0, 'Standing': 1, 'Lying': 2}
 df['primary_posture_n'] = df['primary_posture'].map(categories)
 
@@ -58,54 +60,61 @@ test_ims = []
 test_labels = []
 
 
-for i in range(1000):
-    im = cv2.imread('tranch/' + df.iloc[i].file_path)
-    im = cv2.resize(im, (256, 256))
+for i in range(10000):
+    im = cv2.imread(df.iloc[i].file_path)
+    im = cv2.resize(im, (224, 224))
     train_ims.append(im)
     train_labels.append(df.iloc[i].primary_posture_n)
 
+for i in range(10000, 12500):
+    im = cv2.imread(df.iloc[i].file_path)
+    im = cv2.resize(im, (224, 224))
+    test_ims.append(im)
+    test_labels.append(df.iloc[i].primary_posture_n)
 
 
-# train_ims = np.array( train_ims ) / 255
-# train_labels = np.array( train_labels )
-# test_ims = np.array( test_ims ) / 255
-# test_labels = np.array( test_labels )
+train_ims = np.array( train_ims ) / 255
+train_labels = np.array( train_labels )
+test_ims = np.array( test_ims ) / 255
+test_labels = np.array( test_labels )
 
 
-# train_labels = tf.keras.utils.to_categorical( train_labels , num_classes=3 )
-# test_labels = tf.keras.utils.to_categorical( test_labels , num_classes=3 )
+print(train_labels)
 
-# from keras.applications import MobileNetV2
-# from keras import layers, optimizers
+train_labels = tf.keras.utils.to_categorical( train_labels , num_classes=3 )
+test_labels = tf.keras.utils.to_categorical( test_labels , num_classes=3 )
 
-# base_model = MobileNetV2(weights='imagenet',include_top=False, input_shape=(256, 256, 3)) # 224, 224
-# x = base_model.output
-# x = layers.GlobalAveragePooling2D()(x)
-# x = layers.Dense(1024,activation='relu')(x) 
-# x = layers.Dense(1024,activation='relu')(x) 
-# x = layers.Dense(512,activation='relu')(x) 
-# preds = layers.Dense(3, activation='softmax')(x) 
+from keras.applications import MobileNetV2
+from keras import layers, optimizers
 
-# model = models.Model(inputs=base_model.input,outputs=preds)
+base_model = MobileNetV2(weights='imagenet',include_top=False, input_shape=(224, 224, 3)) # 224, 224
+x = base_model.output
+x = layers.GlobalAveragePooling2D()(x)
+x = layers.Dense(1024,activation='relu')(x) 
+x = layers.Dense(1024,activation='relu')(x) 
+x = layers.Dense(512,activation='relu')(x) 
+preds = layers.Dense(3, activation='softmax')(x) 
 
-# for layer in model.layers[:20]:
-#     layer.trainable=False
-# for layer in model.layers[20:]:
-#     layer.trainable=True
+model = models.Model(inputs=base_model.input,outputs=preds)
 
-# model.compile(optimizer='Adam',loss='categorical_crossentropy',metrics=['accuracy'])
+for layer in model.layers[:20]:
+    layer.trainable=False
+for layer in model.layers[20:]:
+    layer.trainable=True
 
-# model.fit(
-#     train_ims, train_labels,
-#     epochs=10,
-#     batch_size=10,
-#     callbacks=None,
-# )
-# # image data generator 
-# # flow from dataframe and flow from directory
-# # 2000 images at a time
+model.compile(optimizer='Adam',loss='categorical_crossentropy',metrics=['accuracy'])
 
-# model.evaluate(test_ims, test_labels)
+model.fit(
+    train_ims, train_labels,
+    epochs=10,
+    batch_size=10,
+    callbacks=None,
+)
+# image data generator 
+# flow from dataframe and flow from directory
+# 2000 images at a time
+
+model.evaluate(test_ims, test_labels)
 
 """- what size to resize to
 - training over all 3 tranches
