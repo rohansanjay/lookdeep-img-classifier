@@ -29,6 +29,7 @@ from PIL import ImageOps
 
 # For measuring the inference time.
 import time
+from progress.bar import Bar
 
 # Print Tensorflow version
 print(tf.__version__)
@@ -44,7 +45,6 @@ print("The following GPU devices are available: %s" % tf.test.gpu_device_name())
 df = pd.read_csv('tranch_master.csv')
 df = df.dropna(subset=['primary_posture'])
 df = df.reset_index(drop=True)
-print(df['primary_posture'].unique())
 df = df[df['primary_posture'] != 'Unknown']
 categories = {'Sitting': 0, 'Standing': 1, 'Lying': 2}
 df['primary_posture_n'] = df['primary_posture'].map(categories)
@@ -59,27 +59,32 @@ train_labels = []
 test_ims = []
 test_labels = []
 
-
-for i in range(10000):
+print('\nloading train images')
+bar = Bar('Countdown', max = len(df) * 0.8)
+for i in range(len(df) * 0.8):
     im = cv2.imread(df.iloc[i].file_path)
     im = cv2.resize(im, (224, 224))
     train_ims.append(im)
     train_labels.append(df.iloc[i].primary_posture_n)
+    bar.next()
+    
+bar.finish()
 
-for i in range(10000, 12500):
+print('\nloading test images')
+bar = Bar('Countdown', max = len(df) * 0.2)
+for i in range(len(df) * 0.8, len(df)):
     im = cv2.imread(df.iloc[i].file_path)
     im = cv2.resize(im, (224, 224))
     test_ims.append(im)
     test_labels.append(df.iloc[i].primary_posture_n)
+    bar.next()
 
+bar.finish()
 
 train_ims = np.array( train_ims ) / 255
 train_labels = np.array( train_labels )
 test_ims = np.array( test_ims ) / 255
 test_labels = np.array( test_labels )
-
-
-print(train_labels)
 
 train_labels = tf.keras.utils.to_categorical( train_labels , num_classes=3 )
 test_labels = tf.keras.utils.to_categorical( test_labels , num_classes=3 )
@@ -110,6 +115,7 @@ model.fit(
     batch_size=10,
     callbacks=None,
 )
+
 # image data generator 
 # flow from dataframe and flow from directory
 # 2000 images at a time
