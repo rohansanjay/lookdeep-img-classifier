@@ -59,10 +59,10 @@ test_labels = []
 
 
 for i in range(1000):
-  im = cv2.imread('tranch/' + df.iloc[i].file_path)
-  im = cv2.resize(im, (256, 256))
-  train_ims.append(im)
-  train_labels.append(df.iloc[i].primary_posture_n)
+    im = cv2.imread('tranch/' + df.iloc[i].file_path)
+    im = cv2.resize(im, (256, 256))
+    train_ims.append(im)
+    train_labels.append(df.iloc[i].primary_posture_n)
 
 
 
