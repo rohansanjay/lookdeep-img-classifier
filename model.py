@@ -58,10 +58,11 @@ train_ims = []
 train_labels = []
 test_ims = []
 test_labels = []
+split = int(len(df) * 0.8)
 
 print('\nloading train images')
-bar = Bar('Countdown', max = int(len(df) * 0.8))
-for i in range(int(len(df) * 0.8)):
+bar = Bar('Countdown', max = split)
+for i in range(split):
     im = cv2.imread(df.iloc[i].file_path)
     im = cv2.resize(im, (224, 224))
     train_ims.append(im)
@@ -71,8 +72,8 @@ for i in range(int(len(df) * 0.8)):
 bar.finish()
 
 print('\nloading test images')
-bar = Bar('Countdown', max = int(len(df) * 0.2))
-for i in range(int(len(df) * 0.8), len(df)):
+bar = Bar('Countdown', max = len(df) - split)
+for i in range(split, len(df)):
     im = cv2.imread(df.iloc[i].file_path)
     im = cv2.resize(im, (224, 224))
     test_ims.append(im)
@@ -80,6 +81,8 @@ for i in range(int(len(df) * 0.8), len(df)):
     bar.next()
 
 bar.finish()
+
+print('\nfinishing loading images')
 
 train_ims = np.array( train_ims ) / 255
 train_labels = np.array( train_labels )
@@ -89,8 +92,12 @@ test_labels = np.array( test_labels )
 train_labels = tf.keras.utils.to_categorical( train_labels , num_classes=3 )
 test_labels = tf.keras.utils.to_categorical( test_labels , num_classes=3 )
 
+print('\ncreated np arrays')
+
 from keras.applications import MobileNetV2
 from keras import layers, optimizers
+
+print('\loading model')
 
 base_model = MobileNetV2(weights='imagenet',include_top=False, input_shape=(224, 224, 3)) # 224, 224
 x = base_model.output
@@ -109,6 +116,8 @@ for layer in model.layers[20:]:
 
 model.compile(optimizer='Adam',loss='categorical_crossentropy',metrics=['accuracy'])
 
+print('\ntraining')
+
 model.fit(
     train_ims, train_labels,
     epochs=10,
@@ -120,6 +129,7 @@ model.fit(
 # flow from dataframe and flow from directory
 # 2000 images at a time
 
+print('\ntesting')
 model.evaluate(test_ims, test_labels)
 
 """- what size to resize to
