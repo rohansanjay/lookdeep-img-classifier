@@ -50,7 +50,6 @@ df['primary_posture_n'] = df['primary_posture'].map(categories)
 """Model"""
 
 import cv2
-from google.colab.patches import cv2_imshow
 from PIL import Image
 
 train_ims = []
@@ -72,7 +71,6 @@ for i in range(1000):
 # test_ims = np.array( test_ims ) / 255
 # test_labels = np.array( test_labels )
 
-# train_ims.shape
 
 # train_labels = tf.keras.utils.to_categorical( train_labels , num_classes=3 )
 # test_labels = tf.keras.utils.to_categorical( test_labels , num_classes=3 )
