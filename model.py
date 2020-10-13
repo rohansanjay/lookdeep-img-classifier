@@ -60,8 +60,8 @@ test_ims = []
 test_labels = []
 
 print('\nloading train images')
-bar = Bar('Countdown', max = len(df) * 0.8)
-for i in range(len(df) * 0.8):
+bar = Bar('Countdown', max = int(len(df) * 0.8))
+for i in range(int(len(df) * 0.8)):
     im = cv2.imread(df.iloc[i].file_path)
     im = cv2.resize(im, (224, 224))
     train_ims.append(im)
@@ -71,8 +71,8 @@ for i in range(len(df) * 0.8):
 bar.finish()
 
 print('\nloading test images')
-bar = Bar('Countdown', max = len(df) * 0.2)
-for i in range(len(df) * 0.8, len(df)):
+bar = Bar('Countdown', max = int(len(df) * 0.2))
+for i in range(int(len(df) * 0.8), len(df)):
     im = cv2.imread(df.iloc[i].file_path)
     im = cv2.resize(im, (224, 224))
     test_ims.append(im)
