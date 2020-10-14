@@ -1,3 +1,11 @@
+from object_detection.py import *
+
+# For running inference on the TF-Hub module.
+import tensorflow as tf
+
+import tensorflow_hub as hub
+from tensorflow.keras import datasets, layers, models
+
 # For downloading the image.
 import matplotlib.pyplot as plt
 import tempfile
@@ -11,6 +19,18 @@ from PIL import ImageColor
 from PIL import ImageDraw
 from PIL import ImageFont
 from PIL import ImageOps
+
+# For measuring the inference time.
+import time
+from progress.bar import Bar
+
+# Print Tensorflow version
+print(tf.__version__)
+
+# Image imports
+from zipfile import ZipFile
+import matplotlib.pyplot as plt
+import pandas as pd
 
 def display_image(image):
   fig = plt.figure(figsize=(20, 15))
