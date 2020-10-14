@@ -62,9 +62,8 @@ test_ims = []
 test_labels = []
 split = int(len(df) * 0.8)
 
-module_handle = "https://tfhub.dev/google/faster_rcnn/openimages_v4/inception_resnet_v2/1"
+module_handle = "https://tfhub.dev/google/openimages_v4/ssd/mobilenet_v2/1" 
 detector = hub.load(module_handle).signatures['default']
-
 
 print('\nloading train images')
 #bar = Bar('Countdown', max = split)
