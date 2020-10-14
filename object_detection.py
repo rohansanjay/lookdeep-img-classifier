@@ -1,5 +1,3 @@
-from object_detection.py import *
-
 # For running inference on the TF-Hub module.
 import tensorflow as tf
 
@@ -43,7 +41,7 @@ def download_and_resize_image(filepath, display=False):
   pil_image = Image.open(filepath)
   pil_image_rgb = pil_image.convert("RGB")
   pil_image_rgb.save(filename, format="JPEG", quality=90)
-  print("Image downloaded to %s." % filename)
+  #print("Image downloaded to %s." % filename)
   if display:
     display_image(pil_image)
   return filename
@@ -115,13 +113,13 @@ def draw_boxes(image, boxes, class_names, scores, max_boxes=5, min_score=0.1):
     font = ImageFont.truetype("/usr/share/fonts/truetype/liberation/LiberationSansNarrow-Regular.ttf",
                               25)
   except IOError:
-    print("Font not found, using default font.")
+    #print("Font not found, using default font.")
     font = ImageFont.load_default()
 
   ymin, xmin, ymax, xmax = tuple(boxes)
   display_str = "{}: {}%".format(class_names.decode("ascii"),
                                   int(100 * scores))
-  print(display_str)
+  #print(display_str)
   color = colors[hash(class_names) % len(colors)]
   image_pil = Image.fromarray(np.uint8(image)).convert("RGB")
   
