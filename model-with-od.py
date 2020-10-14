@@ -7,7 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1nmmLFuKdKpbw0zMaOuyr4XykIyLOXk6S
 """
 
-from object_detection.py import *
+from object_detection import *
 
 # For running inference on the TF-Hub module.
 import tensorflow as tf
