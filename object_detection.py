@@ -1,3 +1,17 @@
+# For downloading the image.
+import matplotlib.pyplot as plt
+import tempfile
+from six.moves.urllib.request import urlopen
+from six import BytesIO
+
+# For drawing onto the image.
+import numpy as np
+from PIL import Image
+from PIL import ImageColor
+from PIL import ImageDraw
+from PIL import ImageFont
+from PIL import ImageOps
+
 def display_image(image):
   fig = plt.figure(figsize=(20, 15))
   plt.grid(False)
