@@ -52,28 +52,22 @@ train_labels = []
 test_ims = []
 test_labels = []
 split = int(len(df) * 0.8)
-train_max = 10000
-test_max = 13000
-
-print('\nloading classifier')
-
-module_handle = "https://tfhub.dev/google/openimages_v4/ssd/mobilenet_v2/1" 
-detector = hub.load(module_handle).signatures['default']
-
-print('\nclassifier loaded')
+train_max = 20000
+test_max = 23000
 
 print('\nloading train images')
 
-# bar = Bar('Countdown', max = split)
-bar = Bar('Countdown', max = train_max)
+bar = Bar('Countdown', max = split)
+# bar = Bar('Countdown', max = train_max)
 
-for i in range(train_max):
+# for i in range(train_max):
+for i in range(split):
     im = cv2.imread(df.iloc[i].file_path)
-    height, width, channels = im.shape
-    
-    r = height / width
-    if r > 2 or r < 0.5:
-        continue
+    # height, width, channels = im.shape
+    # 
+    # r = height / width
+    # if r > 2 or r < 0.5:
+    #     continue
 
     im = cv2.resize(im, (224, 224))
     train_ims.append(im)
@@ -85,17 +79,18 @@ bar.finish()
 
 print('\nloading test images')
 
-# bar = Bar('Countdown', max = len(df) - split)
-bar = Bar('Countdown', max = test_max - train_max)
+bar = Bar('Countdown', max = len(df) - split)
+# bar = Bar('Countdown', max = test_max - train_max)
 
-for i in range(train_max, test_max):
+# for i in range(train_max, test_max):
+for i in range(split, len(df)):
     im = cv2.imread(df.iloc[i].file_path)
-    height, width, channels = im.shape
-    
-    r = height / width
-    if r > 2 or r < 0.5:
-        continue
-        
+    # height, width, channels = im.shape
+    # 
+    # r = height / width
+    # if r > 2 or r < 0.5:
+    #     continue
+    #     
     im = cv2.resize(im, (224, 224))
     test_ims.append(im)
     test_labels.append(df.iloc[i].primary_posture_n)
@@ -138,14 +133,14 @@ for layer in model.layers[:20]:
 for layer in model.layers[20:]:
     layer.trainable=True
 
-model.compile(optimizer='Adam',loss='sparse_categorical_crossentropy',metrics=["sparse_categorical_accuracy"])
+model.compile(optimizer='Adam',loss='categorical_crossentropy',metrics=["categorical_accuracy"])
 
 print('\ntraining')
 
-model.fit(
+history = model.fit(
     train_ims, train_labels,
-    epochs=10,
-    batch_size=10,
+    epochs=50,
+    batch_size=32,
     callbacks=None,
 )
 
@@ -157,3 +152,22 @@ print('\ntesting')
 results = model.evaluate(test_ims, test_labels)
 print("test loss, test acc:", results)
 
+print(history.history.keys())
+print(history.history['categorical_accuracy'])
+print(history.history['loss'])
+
+plt.plot(history.history['categorical_accuracy'])
+plt.title('model accuracy')
+plt.ylabel('accuracy')
+plt.xlabel('epoch')
+plt.legend(['train'], loc='upper left')
+plt.show(block=True)
+plt.savefig('accuracy.pdf')
+
+plt.plot(history.history['loss'])
+plt.title('model loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['train',], loc='upper left')
+plt.show(block=True)
+plt.savefig('loss.pdf')
