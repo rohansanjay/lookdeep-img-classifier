@@ -61,28 +61,41 @@ train_labels = []
 test_ims = []
 test_labels = []
 split = int(len(df) * 0.8)
+train_max = 10000
+test_max = 13000
+
+print('\nloading classifier')
 
 module_handle = "https://tfhub.dev/google/openimages_v4/ssd/mobilenet_v2/1" 
 detector = hub.load(module_handle).signatures['default']
 
+print('\nclassifier loaded')
+
 print('\nloading train images')
-#bar = Bar('Countdown', max = split)
-for i in range(10):
+
+# bar = Bar('Countdown', max = split)
+bar = Bar('Countdown', max = train_max)
+
+for i in range(train_max):
     downloaded_image_path = download_and_resize_image(df.iloc[i].file_path, False)
     cropped = run_detector(detector, downloaded_image_path)
     im = cv2.resize(cropped, (224, 224))
     train_ims.append(im)
     train_labels.append(df.iloc[i].primary_posture_n)
-    #bar.next()
+    bar.next()
     
-#bar.finish()
+bar.finish()
 
-'''
+
 print('\nloading test images')
-bar = Bar('Countdown', max = len(df) - split)
-for i in range(split, len(df)):
-    im = cv2.imread(df.iloc[i].file_path)
-    im = cv2.resize(im, (224, 224))
+
+# bar = Bar('Countdown', max = len(df) - split)
+bar = Bar('Countdown', max = test_max - train_max)
+
+for i in range(train_max, test_max):
+    downloaded_image_path = download_and_resize_image(df.iloc[i].file_path, False)
+    cropped = run_detector(detector, downloaded_image_path)
+    im = cv2.resize(cropped, (224, 224))
     test_ims.append(im)
     test_labels.append(df.iloc[i].primary_posture_n)
     bar.next()
@@ -90,6 +103,8 @@ for i in range(split, len(df)):
 bar.finish()
 
 print('\nfinishing loading images')
+print('len of train images:', len(train_ims))
+print('len of train images:', len(test_ims))
 
 train_ims = np.array( train_ims ) / 255
 train_labels = np.array( train_labels )
@@ -121,7 +136,7 @@ for layer in model.layers[:20]:
 for layer in model.layers[20:]:
     layer.trainable=True
 
-model.compile(optimizer='Adam',loss='categorical_crossentropy',metrics=['accuracy'])
+model.compile(optimizer='Adam',loss='sparse_categorical_crossentropy',metrics=["sparse_categorical_accuracy"])
 
 print('\ntraining')
 
@@ -137,6 +152,6 @@ model.fit(
 # 2000 images at a time
 
 print('\ntesting')
-model.evaluate(test_ims, test_labels)
+results = model.evaluate(test_ims, test_labels)
+print("test loss, test acc:", results)
 
-'''
