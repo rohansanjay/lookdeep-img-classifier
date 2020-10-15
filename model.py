@@ -5,6 +5,7 @@ import tensorflow as tf
 
 import tensorflow_hub as hub
 from tensorflow.keras import datasets, layers, models
+from sklearn.model_selection import train_test_split
 
 # For downloading the image.
 import matplotlib.pyplot as plt
@@ -47,21 +48,14 @@ df['primary_posture_n'] = df['primary_posture'].map(categories)
 import cv2
 from PIL import Image
 
-train_ims = []
-train_labels = []
-test_ims = []
-test_labels = []
-split = int(len(df) * 0.8)
-train_max = 20000
-test_max = 23000
+all_ims = []
+all_labels = []
 
-print('\nloading train images')
+print('\nloading images')
 
-bar = Bar('Countdown', max = split)
-# bar = Bar('Countdown', max = train_max)
+bar = Bar('Countdown', max = len(df))
 
-# for i in range(train_max):
-for i in range(split):
+for i in range(len(df)):
     im = cv2.imread(df.iloc[i].file_path)
     # height, width, channels = im.shape
     # 
@@ -70,34 +64,14 @@ for i in range(split):
     #     continue
 
     im = cv2.resize(im, (224, 224))
-    train_ims.append(im)
-    train_labels.append(df.iloc[i].primary_posture_n)
+    all_ims.append(im)
+    all_labels.append(df.iloc[i].primary_posture_n)
     bar.next()
     
 bar.finish()
 
-
-print('\nloading test images')
-
-bar = Bar('Countdown', max = len(df) - split)
-# bar = Bar('Countdown', max = test_max - train_max)
-
-# for i in range(train_max, test_max):
-for i in range(split, len(df)):
-    im = cv2.imread(df.iloc[i].file_path)
-    # height, width, channels = im.shape
-    # 
-    # r = height / width
-    # if r > 2 or r < 0.5:
-    #     continue
-    #     
-    im = cv2.resize(im, (224, 224))
-    test_ims.append(im)
-    test_labels.append(df.iloc[i].primary_posture_n)
-    bar.next()
-
-bar.finish()
-
+print('\nsplitting images')
+train_ims, test_ims, train_labels, test_labels = train_test_split(all_ims, all_labels, test_size=.20)
 
 print('\nfinishing loading images')
 print('len of train images:', len(train_ims))
@@ -139,9 +113,10 @@ print('\ntraining')
 
 history = model.fit(
     train_ims, train_labels,
-    epochs=50,
+    epochs=15,
     batch_size=32,
     callbacks=None,
+    validation_split=0.2
 )
 
 # image data generator 
@@ -152,11 +127,12 @@ print('\ntesting')
 results = model.evaluate(test_ims, test_labels)
 print("test loss, test acc:", results)
 
-print(history.history.keys())
-print(history.history['categorical_accuracy'])
-print(history.history['loss'])
+#print(history.history.keys())
+#print(history.history['categorical_accuracy'])
+#print(history.history['loss'])
 
 plt.plot(history.history['categorical_accuracy'])
+plt.plot(history.history['val_categorical_accuracy'])
 plt.title('model accuracy')
 plt.ylabel('accuracy')
 plt.xlabel('epoch')
@@ -165,6 +141,7 @@ plt.show(block=True)
 plt.savefig('accuracy.pdf')
 
 plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
 plt.title('model loss')
 plt.ylabel('loss')
 plt.xlabel('epoch')
