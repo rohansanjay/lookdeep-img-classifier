@@ -90,61 +90,61 @@ print('\ncreated np arrays')
 from keras.applications import MobileNetV2
 from keras import layers, optimizers
 
-print('\loading model')
+for batch in [12, 14, 16, 18]:
 
-base_model = MobileNetV2(weights='imagenet',include_top=False, input_shape=(224, 224, 3)) # 224, 224
-x = base_model.output
-x = layers.GlobalAveragePooling2D()(x)
-x = layers.Dense(1024,activation='relu')(x) 
-x = layers.Dense(1024,activation='relu')(x) 
-x = layers.Dense(512,activation='relu')(x) 
-preds = layers.Dense(3, activation='softmax')(x) 
+    print('\loading model')
 
-model = models.Model(inputs=base_model.input,outputs=preds)
+    base_model = MobileNetV2(weights='imagenet',include_top=False, input_shape=(224, 224, 3)) # 224, 224
+    x = base_model.output
+    x = layers.GlobalAveragePooling2D()(x)
+    x = layers.Dense(1024,activation='relu')(x) 
+    x = layers.Dense(1024,activation='relu')(x) 
+    x = layers.Dense(512,activation='relu')(x) 
+    preds = layers.Dense(3, activation='softmax')(x) 
 
-for layer in model.layers[:20]:
-    layer.trainable=False
-for layer in model.layers[20:]:
-    layer.trainable=True
+    model = models.Model(inputs=base_model.input,outputs=preds)
 
-model.compile(optimizer='Adam',loss='categorical_crossentropy',metrics=["categorical_accuracy"])
+    for layer in model.layers[:20]:
+        layer.trainable=False
+    for layer in model.layers[20:]:
+        layer.trainable=True
 
-print('\ntraining')
+    model.compile(optimizer='Adam',loss='categorical_crossentropy',metrics=["categorical_accuracy"])
 
-history = model.fit(
-    train_ims, train_labels,
-    epochs=15,
-    batch_size=32,
-    callbacks=None,
-    validation_split=0.2
-)
+    print('\ntraining')
+    print()
+    print('batch size:', batch)
+    print()
 
-# image data generator 
-# flow from dataframe and flow from directory
-# 2000 images at a time
+    history = model.fit(
+        train_ims, train_labels,
+        epochs=15,
+        batch_size=batch,
+        callbacks=None,
+        validation_split=0.3
+    )
 
-print('\ntesting')
-results = model.evaluate(test_ims, test_labels)
-print("test loss, test acc:", results)
+    print('\ntesting')
+    results = model.evaluate(test_ims, test_labels)
+    print("test loss, test acc:", results)
+    print()
 
-#print(history.history.keys())
-#print(history.history['categorical_accuracy'])
-#print(history.history['loss'])
 
-plt.plot(history.history['categorical_accuracy'])
-plt.plot(history.history['val_categorical_accuracy'])
-plt.title('model accuracy')
-plt.ylabel('accuracy')
-plt.xlabel('epoch')
-plt.legend(['train'], loc='upper left')
-plt.show(block=True)
-plt.savefig('accuracy.pdf')
-
-plt.plot(history.history['loss'])
-plt.plot(history.history['val_loss'])
-plt.title('model loss')
-plt.ylabel('loss')
-plt.xlabel('epoch')
-plt.legend(['train',], loc='upper left')
-plt.show(block=True)
-plt.savefig('loss.pdf')
+# plt.plot(history.history['categorical_accuracy'])
+# plt.plot(history.history['val_categorical_accuracy'])
+# plt.title('model accuracy')
+# plt.ylabel('accuracy')
+# plt.xlabel('epoch')
+# plt.legend(['train'], loc='upper left')
+# plt.show(block=True)
+# plt.savefig('accuracy.pdf')
+# 
+# plt.close()
+# plt.plot(history.history['loss'])
+# plt.plot(history.history['val_loss'])
+# plt.title('model loss')
+# plt.ylabel('loss')
+# plt.xlabel('epoch')
+# plt.legend(['train',], loc='upper left')
+# plt.show(block=True)
+# plt.savefig('loss.pdf')
