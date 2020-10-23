@@ -55,7 +55,7 @@ print('\nloading images')
 
 bar = Bar('Countdown', max = len(df))
 
-for i in range(len(df)):
+for i in range(500):
     im = cv2.imread(df.iloc[i].file_path)
     # height, width, channels = im.shape
     # 
@@ -90,7 +90,7 @@ print('\ncreated np arrays')
 from keras.applications import MobileNetV2
 from keras import layers, optimizers
 
-for batch in [12, 14, 16, 18]:
+for batch in [18]:
 
     print('\loading model')
 
@@ -109,7 +109,7 @@ for batch in [12, 14, 16, 18]:
     for layer in model.layers[20:]:
         layer.trainable=True
 
-    model.compile(optimizer='Adam',loss='categorical_crossentropy',metrics=["categorical_accuracy"])
+    model.compile(optimizer='Adam',loss='categorical_crossentropy',metrics=["accuracy"])
 
     print('\ntraining')
     print()
@@ -118,7 +118,7 @@ for batch in [12, 14, 16, 18]:
 
     history = model.fit(
         train_ims, train_labels,
-        epochs=15,
+        epochs=2,
         batch_size=batch,
         callbacks=None,
         validation_split=0.3
@@ -128,23 +128,29 @@ for batch in [12, 14, 16, 18]:
     results = model.evaluate(test_ims, test_labels)
     print("test loss, test acc:", results)
     print()
+    predictions = model.predict(test_ims)
+    pl = [np.argmax(x) for x in predictions]
+    tl = [np.argmax(x) for x in test_labels]
+    print('prediction shape', pl[:5])
+    print('test labels', tl[:5])
+    print(tf.math.confusion_matrix(tl, pl))
 
+    print(history.history.keys())
 
-# plt.plot(history.history['categorical_accuracy'])
-# plt.plot(history.history['val_categorical_accuracy'])
-# plt.title('model accuracy')
-# plt.ylabel('accuracy')
-# plt.xlabel('epoch')
-# plt.legend(['train'], loc='upper left')
-# plt.show(block=True)
-# plt.savefig('accuracy.pdf')
-# 
-# plt.close()
-# plt.plot(history.history['loss'])
-# plt.plot(history.history['val_loss'])
-# plt.title('model loss')
-# plt.ylabel('loss')
-# plt.xlabel('epoch')
-# plt.legend(['train',], loc='upper left')
-# plt.show(block=True)
-# plt.savefig('loss.pdf')
+    plt.plot(history.history['accuracy'])
+    plt.plot(history.history['val_accuracy'])
+    plt.title('model accuracy')
+    plt.ylabel('accuracy')
+    plt.xlabel('epoch')
+    plt.legend(['train', 'test'], loc='upper left')
+    plt.savefig('accuracy.pdf')
+
+    plt.close()
+
+    plt.plot(history.history['loss'])
+    plt.plot(history.history['val_loss'])
+    plt.title('model loss')
+    plt.ylabel('loss')
+    plt.xlabel('epoch')
+    plt.legend(['train', 'test'], loc='upper left')
+    plt.savefig('loss.pdf')

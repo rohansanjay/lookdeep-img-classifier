@@ -91,7 +91,7 @@ global_average_layer = tf.keras.layers.GlobalAveragePooling2D()
 prediction_layer = tf.keras.layers.Dense(1)
 
 inputs = tf.keras.Input(shape=(224, 224, 3))
-x = base_model(x, training=False)
+x = base_model
 x = global_average_layer(x)
 x = tf.keras.layers.Dropout(0.2)(x)
 outputs = prediction_layer(x)
