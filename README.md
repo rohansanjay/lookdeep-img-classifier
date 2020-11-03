@@ -24,7 +24,7 @@ The full data set can be downloaded using the following script:
 ``` bash
 python download_data.py
 ```
-This downloads all 3 traches of images and their corresponding labels. 
+This downloads all 3 tranches of images and their corresponding labels. 
   
 3 folders with the images are created: home/, tranch2/ and tranch3/.  
 A csv file with all lablels and the corresponding image file paths is created: tranch_master.csv. 
