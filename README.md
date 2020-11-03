@@ -16,7 +16,7 @@ Note: these commands can be added to a job.sh file and called in one step from t
 Once these commands are entered, the compute node will be active for the period of time specified. Python scripts can then be run as follows: 
 ``` bash
 python yourScript.py
-```
+```  
 
 ### Downloading the image data
 
@@ -27,20 +27,14 @@ python download_data.py
 This downloads all 3 traches of images and their corresponding labels. 
   
 3 folders with the images are created: home/, tranch2/ and tranch3/.  
-A csv file with all lablels and file paths is created: tranch_master.csv. 
+A csv file with all lablels and the corresponding image file paths is created: tranch_master.csv. 
 
 
 ### Model Overview
 
 The model uses the MobileNetV2 base model from Keras applications. It was trained across all three tranches using the Imagenet weights. After the base model, a pooling layer and three dense layers were added, with 100 layers frozen for the purposes of fine tuning. The model reached an accuracy of 87% across all three tranches.
 
-
-
-USCoders Final Deliverable
-- How to run code on cluster & set up environment
-   - Rohan
-- Downloading the image data
-   - Rohan
+  
 - Model overview & assessment
    - Derek: Why set up this way, freezing layers, etc
 - Object detection 
