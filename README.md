@@ -31,8 +31,11 @@ A csv file with all lablels and the corresponding image file paths is created: t
 
 
 ### Model Overview
-
-The model uses the MobileNetV2 base model from Keras applications. It was trained across all three tranches using the Imagenet weights. After the base model, a pooling layer and three dense layers were added, with 100 layers frozen for the purposes of fine tuning. The model reached an accuracy of 87% across all three tranches.
+The model is trained using the following command: 
+``` bash
+python model.py
+```  
+The model uses the MobileNetV2 base model from Keras applications. It was trained across all three tranches (~36,000 images with known labels) using the Imagenet weights. After the base model, a pooling layer and three dense layers were added, with 100 layers frozen for the purposes of fine tuning. The model reached an accuracy of 87% across all three tranches. No preprocessing of the images was done when training this model. 
 
   
 ### Notes
