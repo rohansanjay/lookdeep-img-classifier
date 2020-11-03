@@ -15,13 +15,21 @@ module load python
 Note: these commands can be added to a job.sh file and called in one step from the command line but sometimes, the GPU may not load properly. Running each command one at a time ensures that this issue will not arise. 
 Once these commands are entered, the compute node will be active for the period of time specified. Python scripts can then be run as follows: 
 ``` bash
-python3 yourScript.py
+python yourScript.py
 ```
 
-
-
 ### Downloading the image data
-   - Rohan
+
+The full data set can be downloaded using the following script:
+``` bash
+python download_data.py
+```
+This downloaded all 3 traches of images and their corresponding labels. 
+
+
+
+
+
 USCoders Final Deliverable
 - How to run code on cluster & set up environment
    - Rohan
