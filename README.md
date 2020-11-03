@@ -24,9 +24,15 @@ The full data set can be downloaded using the following script:
 ``` bash
 python download_data.py
 ```
-This downloaded all 3 traches of images and their corresponding labels. 
+This downloads all 3 traches of images and their corresponding labels. 
+  
+3 folders with the images are created: home/, tranch2/ and tranch3/.  
+A csv file with all lablels and file paths is created: tranch_master.csv. 
 
 
+### Model Overview
+
+The model uses the MobileNetV2 base model from Keras applications. It was trained across all three tranches using the Imagenet weights. After the base model, a pooling layer and three dense layers were added, with 100 layers frozen for the purposes of fine tuning. The model reached an accuracy of 87% across all three tranches.
 
 
 
@@ -49,6 +55,3 @@ To do:
 - Carolina & Kelly to make sure everything looks cute & nice
 
 
-Model Overview
-
-The model uses the MobileNetV2 base model from Keras applications. It was trained across all three tranches using the Imagenet weights. After the base model, a pooling layer and three dense layers were added, with 100 layers frozen for the purposes of fine tuning. The model reached an accuracy of 87% across all three tranches.
