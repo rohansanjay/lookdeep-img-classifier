@@ -27,7 +27,7 @@ python download_data.py
 This downloads all 3 tranches of images and their corresponding labels. 
   
 3 folders with the images are created: home/, tranch2/ and tranch3/.  
-A csv file with all lablels and the corresponding image file paths is created: tranch_master.csv. 
+A csv file with all image file paths and corresponding labels is created: tranch_master.csv. 
 
 
 ### Model Overview
@@ -46,5 +46,3 @@ The model uses the MobileNetV2 base model from Keras applications. It was traine
 
 To do: 
 - Carolina & Kelly to make sure everything looks cute & nice
-
-
