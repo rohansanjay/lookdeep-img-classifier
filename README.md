@@ -19,3 +19,5 @@ To do:
 - Carolina & Kelly to make sure everything looks cute & nice
 
 
+Model Overview
+The model uses the MobileNetV2 base model from Keras applications. It was trained across all three tranches using the Imagenet weights. After the base model, a pooling layer and three dense layers were added, with 100 layers frozen for the purposes of fine tuning. The model reached an accuracy of 87% across all three tranches.
