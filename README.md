@@ -1,5 +1,9 @@
 # LookDeep
 
+### Model Used
+- MobileNet V2
+- Why we used it
+
 ### How to run code on cluster & set up environment
 
 Training the model on USC's High Performance Computing Cluster enables faster computations and GPU usage. The following commands login to a compute node on the cluster with the correct specifications to train the model over the full dataset:
