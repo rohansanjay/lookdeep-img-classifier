@@ -59,7 +59,7 @@ print('\nloading images')
 # progress bar for loading images
 bar = Bar('Countdown', max = len(df))
 
-for i in range(500):
+for i in range(len(df)):
     im = cv2.imread(df.iloc[i].file_path)
     im = cv2.resize(im, (224, 224))
     all_ims.append(im)
