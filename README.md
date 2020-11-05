@@ -2,7 +2,7 @@
 
 ### Model Used
 - MobileNet V2
-- Why we used it
+- Why we used it/ Anna
 
 ### How to run code on cluster & set up environment
 
