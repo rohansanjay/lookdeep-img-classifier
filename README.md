@@ -41,8 +41,7 @@ The model uses the MobileNetV2 base model from Keras applications. It was traine
 ### Notes
 - Object detection 
    - Wendy's group
-- Conclusion
-   - Kelly & Carolina
 
-To do: 
-- Carolina & Kelly to make sure everything looks cute & nice
+
+### Conclusion
+- Carolina/Kelly
