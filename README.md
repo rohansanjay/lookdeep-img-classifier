@@ -45,7 +45,7 @@ The model uses the MobileNetV2 base model from Keras applications. It was traine
 ### Object detection
 - Wendy's group 
 
-### Data Agumentation
+### Data Augmentation
 - Rohan
 
 ### Data Visualization
