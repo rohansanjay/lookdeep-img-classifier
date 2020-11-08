@@ -1,5 +1,9 @@
 # LookDeep
 
+### Model Used
+- MobileNet V2
+- Why we used it/ Anna
+
 ### How to run code on cluster & set up environment
 
 Training the model on USC's High Performance Computing Cluster enables faster computations and GPU usage. The following commands login to a compute node on the cluster with the correct specifications to train the model over the full dataset:
@@ -38,13 +42,14 @@ python model.py
 The model uses the MobileNetV2 base model from Keras applications. It was trained across all three tranches (~36,000 images with known labels) using the Imagenet weights. After the base model, a pooling layer and three dense layers were added, with 100 layers frozen for the purposes of fine tuning. The model reached an accuracy of 87% across all three tranches. No preprocessing of the images was done when training this model. 
 
   
-### Notes
-- Object detection 
-   - Wendy's group
+### Object detection
+- Wendy's group 
+
+### Data Augmentation
+- Rohan
 
 ### Data Visualization
-- Kartik 
-
+- Kartik /Rohan/ Chris
 
 ### Conclusion
 - Carolina/Kelly
