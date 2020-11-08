@@ -2,7 +2,6 @@
 
 # For running inference on the TF-Hub module.
 import tensorflow as tf
-import tensorflow_hub as hub
 from tensorflow.keras import datasets, layers, models
 from sklearn.model_selection import train_test_split
 from keras.applications import MobileNetV2
@@ -19,10 +18,6 @@ import pandas as pd
 # For image manipulation.
 import numpy as np
 from PIL import Image
-from PIL import ImageColor
-from PIL import ImageDraw
-from PIL import ImageFont
-from PIL import ImageOps
 import cv2
 
 # For measuring the inference time.
