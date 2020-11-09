@@ -59,7 +59,9 @@ However, we were unable to get this to work with our MobileNetV2 model, since th
 ### Data Visualization
 - Kartik /Rohan/ Chris
 
-![individual_tables](https://user-images.githubusercontent.com/31398970/98498936-03da1b00-21fd-11eb-98c8-2f47413134ca.png)
+The table below gives a better understanding of our dataset based on various measures and parameters of exploration and their distribution based on the counts of their labels, namely number of person in the image (person_count), occlusion (primary_occluded), person's posture (primary_posture) and type of person (person_type). The vertical axes correspond to the number (in thousands) to each label in the horizontal axes. This represents some of the key features of the dataset and we explored certain scopes of inquiry within this label-based framework.
+
+![individual_tables](https://user-images.githubusercontent.com/31398970/98499514-97f8b200-21fe-11eb-997e-57859498d101.png)
 
 
 ### Conclusion
