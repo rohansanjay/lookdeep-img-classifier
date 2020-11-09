@@ -60,4 +60,15 @@ However, we were unable to get this to work with our MobileNetV2 model, since th
 - Kartik /Rohan/ Chris
 
 ### Conclusion
-- Carolina/Kelly
+We were able to reach a 90% accuracy level
+
+What we learned:
+Focusing on pre-processing vs model architecture
+Testing over large sets
+Importance of tuning
+
+How we plan to improve:
+Batch normalization 
+Object Detection on HPC
+Further tuning
+Feature extraction
