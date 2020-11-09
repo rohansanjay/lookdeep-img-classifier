@@ -60,4 +60,4 @@ However, we were unable to get this to work with our MobileNetV2 model, since th
 - Kartik /Rohan/ Chris
 
 ### Conclusion
-- Carolina/Kelly
+We were able to reach a 90% accuracy level
