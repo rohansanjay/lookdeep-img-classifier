@@ -63,4 +63,4 @@ However, we were unable to get this to work with our MobileNetV2 model, since th
 
 
 ### Conclusion
-We were able to reach a 90% accuracy level even without preprocessing the data. If we were to continue this project, we would have liked to continue to build on our model accuracy and explore how preprocessing of data could improve our final results.
+We were able to reach a 90% accuracy level even without preprocessing the data. If we were to continue this project, we would have liked to continue to build on our model accuracy and explore how preprocessing of data could improve our final results. Overall, our group is extremely happy and proud about our progress with this project. We have developed a reliable machine learning model with little to no prior exposure. We hope you find relevant information in this Github Repository and please do not hesitate to contact us with any questions or suggestions.
