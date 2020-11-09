@@ -44,9 +44,9 @@ The model uses the MobileNetV2 base model from Keras applications. It was traine
 ### Data Preprocessing
 This script contains an alternate method of loading and preprocessing images designed to increase efficiency. It implements basic preprocessing that excludes the following images with the intent of improving accuracy:
 
-    Images containing more than one person (an "easier" subset for the model to work on)
-    Images that are marked as occluded = unknown (these images tend to be confusing to the model)
-    Images that have a blank "primary_posture" label
+    1. Images containing more than one person (an "easier" subset for the model to work on)
+    2. Images that are marked as occluded = unknown (these images tend to be confusing to the model)
+    3. Images that have a blank "primary_posture" label
 
 We load the images into a directory with three subfolders ("Sitting," "Standing," "Lying"), and then convert those images into a tf.data.Dataset object that infers labels from the directory structure (hence the subfolders). This creates a training set that allows us to use a prefetch function to load images in batches and push them to the model while simultaneously loading then next batch of images. This speeds up the model training process significantly. 
 
@@ -65,8 +65,13 @@ The table below gives a better understanding of our dataset based on various mea
 
 Given the scope of our analysis centering around investigating around sorting data as "sitting", "standing" or "lying", the graphs below illustrate the distribution of given dataset when comparing the person_count, primary_occluded and person_type against primary_posture. More information and visualization data can be found in the datasets folder.
 
-![variables_against_posture](https://user-images.githubusercontent.com/31398970/98507048-abf9df00-2211-11eb-82e5-70f29333e482.png) ![variables_against_posture_normalized](https://user-images.githubusercontent.com/31398970/98507049-ac927580-2211-11eb-972d-8f05263d5bb8.png)
+![variables_against_posture_normalized](https://user-images.githubusercontent.com/31398970/98507049-ac927580-2211-11eb-972d-8f05263d5bb8.png)
 
+The same data above, with the vertical axes standardized
+
+![variables_against_posture](https://user-images.githubusercontent.com/31398970/98507048-abf9df00-2211-11eb-82e5-70f29333e482.png) 
+
+These data tables give a better understanding of the omissions made in the pre-processing stage, and ultimately we focused our model around the median/centroid of the training dataset - a further scope to improve our model's accuracy would have to involve exploring the exclusions and training data to better account for them as well.
 
 ### Conclusion
 We were able to reach a 90% accuracy level even without preprocessing the data. If we were to continue this project, we would have liked to continue to build on our model accuracy and explore how preprocessing of data could improve our final results. Overall, our group is extremely happy and proud about our progress with this project. We have developed a reliable machine learning model with little to no prior exposure. We hope you find relevant information in this Github Repository and please do not hesitate to contact us with any questions or suggestions.
