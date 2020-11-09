@@ -59,7 +59,7 @@ However, we were unable to get this to work with our MobileNetV2 model, since th
 ### Data Visualization
 - Kartik /Rohan/ Chris
 
-![picture](C:\Users\karti\Documents\Kartik\Trojan Est. 2017\Senior Year\Fall'20\MATH499\github\LookDeep\datasets\personCount.png?raw=true "Optional Title")
+![individual_tables](https://user-images.githubusercontent.com/31398970/98498936-03da1b00-21fd-11eb-98c8-2f47413134ca.png)
 
 
 ### Conclusion
