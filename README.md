@@ -63,4 +63,4 @@ However, we were unable to get this to work with our MobileNetV2 model, since th
 
 
 ### Conclusion
-We were able to reach a 90% accuracy level even without preprocessing the data.
+We were able to reach a 90% accuracy level even without preprocessing the data. If we were to continue this project, we would have liked to continue to build on our model accuracy and explore how preprocessing of data could improve our final results.
