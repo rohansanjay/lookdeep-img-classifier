@@ -63,6 +63,10 @@ The table below gives a better understanding of our dataset based on various mea
 
 ![individual_tables](https://user-images.githubusercontent.com/31398970/98499514-97f8b200-21fe-11eb-997e-57859498d101.png)
 
+Given the scope of our analysis centering around investigating around sorting data as "sitting", "standing" or "lying", the graphs below illustrate the distribution of given dataset when comparing the person_count, primary_occluded and person_type against primary_posture. More information and visualization data can be found in the datasets folder.
+
+![variables_against_posture](https://user-images.githubusercontent.com/31398970/98507048-abf9df00-2211-11eb-82e5-70f29333e482.png) ![variables_against_posture_normalized](https://user-images.githubusercontent.com/31398970/98507049-ac927580-2211-11eb-972d-8f05263d5bb8.png)
+
 
 ### Conclusion
 We were able to reach a 90% accuracy level even without preprocessing the data. If we were to continue this project, we would have liked to continue to build on our model accuracy and explore how preprocessing of data could improve our final results. Overall, our group is extremely happy and proud about our progress with this project. We have developed a reliable machine learning model with little to no prior exposure. We hope you find relevant information in this Github Repository and please do not hesitate to contact us with any questions or suggestions.
