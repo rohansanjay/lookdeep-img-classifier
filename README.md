@@ -42,8 +42,17 @@ python model.py
 The model uses the MobileNetV2 base model from Keras applications. It was trained across all three tranches (~36,000 images with known labels) using the Imagenet weights. After the base model, a pooling layer and three dense layers were added, with 100 layers frozen for the purposes of fine tuning. The model reached an accuracy of 87% across all three tranches. No preprocessing of the images was done when training this model. 
 
   
-### Object detection
-- Wendy's group 
+### Data Preprocessing
+This script contains an alternate method of loading and preprocessing images designed to increase efficiency. It implements basic preprocessing that excludes the following images with the intent of improving accuracy:
+
+    Images containing more than one person (an easier subset for the model to work on, since it doesn't need to identify a primary person to learn the posture of)
+    Images that are marked as occluded = unknown (an overview of the data shows that these images tend to be confusing to the model)
+    Images that have a blank "primary_posture" label
+
+We load the images into a directory with three subfolders ("Sitting," "Standing," "Lying"), and then convert those images into a tf.data.Dataset object that infers labels from the directory structure (hence the subfolders). This creates a training set that allows us to use a prefetch function to load images in batches and push them to the model while simultaneously loading then next batch of images. This speeds up the model training process significantly. 
+
+However, we were unable to get this to work with our MobileNetV2 model, since the model seems to require a different input. However, this preprocessing script could be implemented with other models, and serves as a useful guide to preprocessing images and loading them into a model efficiently. 
+
 
 ### Data Augmentation
 - Rohan
