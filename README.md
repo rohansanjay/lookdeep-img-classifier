@@ -45,9 +45,9 @@ The model uses the MobileNetV2 base model from Keras applications. It was traine
 ### Data Preprocessing
 This script contains an alternate method of loading and preprocessing images designed to increase efficiency. It implements basic preprocessing that excludes the following images with the intent of improving accuracy:
 
-    Images containing more than one person (an easier subset for the model to work on, since it doesn't need to identify a primary person to learn the posture of)
-    Images that are marked as occluded = unknown (an overview of the data shows that these images tend to be confusing to the model)
-    Images that have a blank "primary_posture" label
+   Images containing more than one person (an easier subset for the model to work on, since it doesn't need to identify a primary person to learn the posture of)
+   Images that are marked as occluded = unknown (an overview of the data shows that these images tend to be confusing to the model)
+   Images that have a blank "primary_posture" label
 
 We load the images into a directory with three subfolders ("Sitting," "Standing," "Lying"), and then convert those images into a tf.data.Dataset object that infers labels from the directory structure (hence the subfolders). This creates a training set that allows us to use a prefetch function to load images in batches and push them to the model while simultaneously loading then next batch of images. This speeds up the model training process significantly. 
 
