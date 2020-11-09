@@ -59,7 +59,7 @@ However, we were unable to get this to work with our MobileNetV2 model, since th
 ### Data Visualization
 - Kartik /Rohan/ Chris
 
-
+![picture](C:\Users\karti\Documents\Kartik\Trojan Est. 2017\Senior Year\Fall'20\MATH499\github\LookDeep\datasets\personCount.png)
 
 ### Conclusion
 We were able to reach a 90% accuracy level
