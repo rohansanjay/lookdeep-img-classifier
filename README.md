@@ -1,22 +1,7 @@
 # LookDeep
 
-## Table of Contents
-- [Class Definitions](#class-definitions)
-  - [Stock](#stock)
-  - [Pair](#pair)
-- [Testing Pairs](#testing-pairs)
-  - [Testing Parameters](#testing-parameters)
-  - [Tests](#tests)
-    - [Price Tests](#price-tests)
-    - [Spread Tests](#spread-tests)
-  - [Testing Logic](#testing-logic)
-- [Scheduling](#scheduling)
-- [Collecting Ticker Data](#collecting-ticker-data)
-- [Selecting Pairs](#selecting-pairs)
-- [Trading Pairs](#trading-pairs)
-  - [check_pair_status()](#check_pair_status)
-  - [Helper Functions](#helper-functions-for-trading-logic)
-- [Logging](#logging)
+### Table of Contents
+- [How to run code on cluster & set up environment](#How to run code on cluster & set up environment)
 
 
 ### How to run code on cluster & set up environment
