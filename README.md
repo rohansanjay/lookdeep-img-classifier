@@ -1,5 +1,5 @@
 # LookDeep
-An image classification model to classify patient posture in hospital rooms for the Bay Area based startup [LookDeep Health](https://www.lookdeep.health/).
+An image classification model to predict patient posture in hospital rooms for the Bay Area based startup [LookDeep Health](https://www.lookdeep.health/).
 
 ### Table of Contents
 - [How to run code on cluster & set up environment](#How-to-run-code-on–cluster–&–set–up–environment)
