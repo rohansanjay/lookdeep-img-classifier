@@ -1,7 +1,7 @@
 # LookDeep
 
 ### Table of Contents
-- [How to run code on cluster & set up environment](#How to run code on cluster & set up environment)
+- [How to run code on cluster & set up environment](#How-to)
 
 
 ### How to run code on cluster & set up environment
