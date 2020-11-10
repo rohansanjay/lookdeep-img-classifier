@@ -1,9 +1,9 @@
 # LookDeep
 
 ### Table of Contents
-- [How to run code on cluster & set up environment](#How-to)
-- [Downloading the image data and Data Preprocessing](#Downloading)
-- [Data Visualization](#HData-Visualization)
+- [How to run code on cluster & set up environment](#How-to-run-code-on–cluster–&–set–up–environment)
+- [Downloading the image data and Data Preprocessing](#Downloading-the-image-data-and-Data-Preprocessing)
+- [Data Visualization](#Data-Visualization)
 - [Data Augmentation](#Data-Augmentation)
 - [Model Overview](#Model-Overview)
 - [Conclusion](#Conclusion)
