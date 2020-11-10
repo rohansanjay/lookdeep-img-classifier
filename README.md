@@ -2,6 +2,11 @@
 
 ### Table of Contents
 - [How to run code on cluster & set up environment](#How-to)
+- [Downloading the image data and Data Preprocessing](#How-to)
+- [Data Visualization](#HData-Visualization)
+- [Data Augmentation](#Data-Augmentation)
+- [Model Overview](#Model)
+- [Conclusioon](#Conclusioon)
 
 
 ### How to run code on cluster & set up environment
