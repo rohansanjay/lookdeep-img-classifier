@@ -6,6 +6,7 @@ An image classification model to predict patient posture in hospital rooms for t
 - [Downloading the image data and Data Preprocessing](#Downloading-the-image-data-and-Data-Preprocessing)
 - [Data Visualization](#Data-Visualization)
 - [Data Augmentation](#Data-Augmentation)
+- [Border Replication](#Border-Replication)
 - [Model Overview](#Model-Overview)
 - [Conclusion](#Conclusion)
 
@@ -69,6 +70,10 @@ These data tables give a better understanding of the omissions made in the pre-p
 
 ### Data Augmentation
 Data Augmentation preprocesses as normal with the only difference being that every image labeled as lying in every tranch is replicated through copying existing images already present. That alongside including CV2 instead of other image manipulation tools changed augmented accuracy from high 70s to high 80s. Although there is an issue with downloading the model to train on the augmented data set, the preprocessing element is functional. It helps because of the imbalanced data set. The sitting class is over represented and the lying class is inherently difficult for the model to train on. We discovered that the model was struggling most with classifying lying data, so for that reason we decided to augment that subset of the data.
+
+
+### Border Replication
+The purpose of border replication is to avoid the skew that occurs due to extreme ratios when resizing. It blues the edges instead to maintain a humanoid figure that is not disproportionately skewed.
 
 
 ### Model Overview
