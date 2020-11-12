@@ -68,7 +68,7 @@ These data tables give a better understanding of the omissions made in the pre-p
 
 
 ### Data Augmentation
-Data Augmentation preprocesses as normal with the only difference being that every image labeled as lying in every tranch is replicated and randomly flipped and rotated 20 degrees. Although there is an issue with downloading the model to train on the augmented data set, the preprocessing element is functional. It helps because of the imbalanced data set. The sitting class is over represented and the lying class is inherently difficult for the model to train on. We discovered that the model was struggling most with classifying lying data, so for that reason we decided to augment that subset of the data.
+Data Augmentation preprocesses as normal with the only difference being that every image labeled as lying in every tranch is replicated through copying existing images already present. That alongside including CV2 instead of other image manipulation tools changed augmented accuracy from high 70s to high 80s. Although there is an issue with downloading the model to train on the augmented data set, the preprocessing element is functional. It helps because of the imbalanced data set. The sitting class is over represented and the lying class is inherently difficult for the model to train on. We discovered that the model was struggling most with classifying lying data, so for that reason we decided to augment that subset of the data.
 
 
 ### Model Overview
