@@ -54,15 +54,15 @@ However, we were unable to get this to work with our MobileNetV2 model, since th
 
 The table below gives a better understanding of our dataset based on various measures and parameters of exploration and their distribution based on the counts of their labels, namely number of person in the image (person_count), occlusion (primary_occluded), person's posture (primary_posture) and type of person (person_type). The vertical axes correspond to the number (in thousands) to each label in the horizontal axes. This represents some of the key features of the dataset and we explored certain scopes of inquiry within this label-based framework.
 
-![individual_tables](https://user-images.githubusercontent.com/31398970/98972465-54849900-24c7-11eb-8ee7-865c9a0e5725.png)
+![individual_tables2](https://user-images.githubusercontent.com/31398970/98973874-23a56380-24c9-11eb-9379-16288a40634e.png)
 
 Given the scope of our analysis centering around investigating around sorting data as "sitting", "standing" or "lying", the graphs below illustrate the distribution of given dataset when comparing the person_type (CD(2)), primary_occluded (CB(2)) and person_count (CA(2)) against primary_posture. More information and visualization data can be found in the datasets folder.
 
-![variables_against_posture_normalized](https://user-images.githubusercontent.com/31398970/98507049-ac927580-2211-11eb-972d-8f05263d5bb8.png)
+![variables_against_posture2](https://user-images.githubusercontent.com/31398970/98973887-27d18100-24c9-11eb-98c8-d0d7bab14792.png)
 
 The same data above, with the vertical axes standardized
 
-![variables_against_posture](https://user-images.githubusercontent.com/31398970/98507048-abf9df00-2211-11eb-82e5-70f29333e482.png) 
+![variables_against_posture_normalized](https://user-images.githubusercontent.com/31398970/98973917-3029bc00-24c9-11eb-8d2a-d865d23b8af9.png)
 
 These data tables give a better understanding of the omissions made in the pre-processing stage, and ultimately we focused our model around the median/centroid of the training dataset - a further scope to improve our model's accuracy would have to involve exploring the exclusions and training data to better account for them as well.
 
