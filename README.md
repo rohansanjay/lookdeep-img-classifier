@@ -58,11 +58,11 @@ The table below gives a better understanding of our dataset based on various mea
 
 Given the scope of our analysis centering around investigating around sorting data as "sitting", "standing" or "lying", the graphs below illustrate the distribution of given dataset when comparing the person_type (red), primary_occluded (green) and person_count (blue) against primary_posture. More information and visualization data can be found in the datasets folder.
 
-![variables_against_posture2](https://user-images.githubusercontent.com/31398970/98973887-27d18100-24c9-11eb-98c8-d0d7bab14792.png)
+![variables_against_posture_normalized](https://user-images.githubusercontent.com/31398970/98973917-3029bc00-24c9-11eb-8d2a-d865d23b8af9.png)
 
 The same data above, with the vertical axes standardized
 
-![variables_against_posture_normalized](https://user-images.githubusercontent.com/31398970/98973917-3029bc00-24c9-11eb-8d2a-d865d23b8af9.png)
+![variables_against_posture2](https://user-images.githubusercontent.com/31398970/98973887-27d18100-24c9-11eb-98c8-d0d7bab14792.png)
 
 These data tables give a better understanding of the omissions made in the pre-processing stage, and ultimately we focused our model around the median/centroid of the training dataset - a further scope to improve our model's accuracy would have to involve exploring the exclusions and training data to better account for them as well.
 
