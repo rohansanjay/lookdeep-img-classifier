@@ -56,7 +56,7 @@ The table below gives a better understanding of our dataset based on various mea
 
 ![individual_tables](https://user-images.githubusercontent.com/31398970/98972465-54849900-24c7-11eb-8ee7-865c9a0e5725.png)
 
-Given the scope of our analysis centering around investigating around sorting data as "sitting", "standing" or "lying", the graphs below illustrate the distribution of given dataset when comparing the person_count, primary_occluded and person_type against primary_posture. More information and visualization data can be found in the datasets folder.
+Given the scope of our analysis centering around investigating around sorting data as "sitting", "standing" or "lying", the graphs below illustrate the distribution of given dataset when comparing the person_type (CD(2)), primary_occluded (CB(2)) and person_count (CA(2)) against primary_posture. More information and visualization data can be found in the datasets folder.
 
 ![variables_against_posture_normalized](https://user-images.githubusercontent.com/31398970/98507049-ac927580-2211-11eb-972d-8f05263d5bb8.png)
 
