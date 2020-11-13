@@ -8,6 +8,7 @@ An image classification model to predict patient posture in hospital rooms for t
 - [Data Augmentation](#Data-Augmentation)
 - [Border Replication](#Border-Replication)
 - [Model Overview](#Model-Overview)
+- [Runtime Analysis](#Runtime-Analysis)
 - [Conclusion](#Conclusion)
 
 
@@ -84,6 +85,8 @@ python model.py
 The model uses the MobileNetV2 base model from Keras applications. It was trained across all three tranches (~36,000 images with known labels) using the Imagenet weights. After the base model, a pooling layer and three dense layers were added, with 100 layers frozen for the purposes of fine tuning. The model reached an accuracy of 87% across all three tranches. No preprocessing of the images was done when training this model. 
 
 MobileNetV2 is light and fast -- it mainly uses depthwise convolution for an architecture that uses fewer parameters and less computational complexity while still achieving good results. When we first started working on this model (before we got access to USC's computing cluster), we were strongly limited by memory and latency limitations, and this model was a great option for getting into image processing and still achieving a high accuracy without an heavy and complicated model architecture. 
+
+### Runtime Analysis
 
 
 ### Conclusion
