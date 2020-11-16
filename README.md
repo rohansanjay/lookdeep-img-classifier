@@ -8,7 +8,6 @@ An image classification model to predict patient posture in hospital rooms for t
 - [Data Augmentation](#Data-Augmentation)
 - [Border Replication](#Border-Replication)
 - [Model Overview](#Model-Overview)
-- [Runtime Analysis](#Runtime-Analysis)
 - [Conclusion](#Conclusion)
 
 
@@ -89,8 +88,6 @@ The model uses the MobileNetV2 base model from Keras applications. It was traine
 MobileNetV2 is light and fast -- it mainly uses depthwise convolution for an architecture that uses fewer parameters and less computational complexity while still achieving good results. When we first started working on this model (before we got access to USC's computing cluster), we were strongly limited by memory and latency limitations, and this model was a great option for getting into image processing and still achieving a high accuracy without an heavy and complicated model architecture. 
 
 To improve upon the 87.2% initial accuracy of MobilenetV2 with the three exclusions mentioned in the Data Preprocessing segement above, border replication techniques were used - which led to an accuracy of 86.12%. Ultimately, the accuracy of the original model was improved upon by doing a series of class specific data augmentation techniques across sitting, standing and lying by increasing the set of images for the respective categories by replicating them in the dataset, which allowed us to raise the overall classification accuracies to above 90% for each of the three image classes, with an overall testing accuracy of 90.69% overall.
-
-### Runtime Analysis
 
 
 ### Conclusion
