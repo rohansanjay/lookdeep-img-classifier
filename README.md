@@ -75,6 +75,7 @@ Data Augmentation preprocesses as normal with the only difference being that eve
 
 Data Augmentation ultimately created a more balanced data set with regards to posture labels which results in the model better distinguishing standing from sitting and vice versa. Images were augmented through appending multiple of the same image to the image matrix until a certain ratio requirement was met. We ultimately discovered that replicating approximately 9000 sitting images and 6000 lying images while only training with 20000 standing images was sufficient to achieve nearly uniform classification accuracy among the three classes, significantly reduce the sitting/standing confusion, and significantly increase lying classification accuracy (from 78% without augmentation to 90.8% with augmentation).
 
+![](https://github.com/rohansanjay/LookDeep/blob/master/visualizations/posture_augfrequency.jpg)
 
 ### Border Replication
 The purpose of border replication is to avoid the skew that occurs due to extreme ratios when resizing. It blues the edges instead to maintain a humanoid figure that is not disproportionately skewed.
